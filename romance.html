@@ -1,0 +1,1286 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CineMax | Filmes de Romance</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@500;600;700&display=swap');
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:#080b0d;
+            color:#ffffff;
+            font-family:'Poppins', sans-serif;
+        }
+
+        /* ===== HEADER ===== */
+
+        header{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:80px;
+            background:rgba(8,11,13,.96);
+            border-bottom:1px solid rgba(212,175,55,.25);
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 7%;
+            z-index:1000;
+        }
+
+        .logo{
+            font-family:'Cinzel', serif;
+            font-size:28px;
+            font-weight:700;
+            letter-spacing:2px;
+            color:#ffffff;
+        }
+
+        .logo span{
+            color:#d4af37;
+        }
+
+        nav ul{
+            display:flex;
+            list-style:none;
+            gap:22px;
+        }
+
+        nav a{
+            color:#dddddd;
+            text-decoration:none;
+            font-size:14px;
+            transition:.3s;
+        }
+
+        nav a:hover,
+        nav a.ativo{
+            color:#d4af37;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            padding:120px 10% 70px;
+            position:relative;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.92) 0%,
+                    rgba(0,0,0,.72) 45%,
+                    rgba(0,0,0,.25) 100%
+                ),
+                url("../images/romance-banner.jpg") center/cover;
+        }
+
+        .hero-content{
+            max-width:750px;
+        }
+
+        .categoria{
+            color:#d4af37;
+            font-size:15px;
+            letter-spacing:4px;
+            font-weight:600;
+            margin-bottom:15px;
+        }
+
+        .hero h1{
+            font-family:'Cinzel', serif;
+            font-size:clamp(48px, 8vw, 100px);
+            line-height:1;
+            margin-bottom:25px;
+        }
+
+        .hero p{
+            max-width:650px;
+            color:#dddddd;
+            font-size:18px;
+            line-height:1.8;
+            margin-bottom:35px;
+        }
+
+        .botao{
+            display:inline-block;
+            padding:15px 30px;
+            background:#b00000;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+            font-weight:600;
+            transition:.3s;
+        }
+
+        .botao:hover{
+            background:#d4af37;
+            color:#111111;
+            transform:translateY(-3px);
+        }
+
+        /* ===== SEÇÕES ===== */
+
+        section{
+            padding:90px 10%;
+        }
+
+        .titulo-secao{
+            font-family:'Cinzel', serif;
+            color:#d4af37;
+            font-size:38px;
+            margin-bottom:18px;
+        }
+
+        .subtitulo{
+            color:#a7a7a7;
+            line-height:1.8;
+            max-width:850px;
+            margin-bottom:45px;
+        }
+
+        /* ===== HISTÓRIA ===== */
+
+        .historia{
+            background:#0d1113;
+        }
+
+        .historia-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:50px;
+            align-items:center;
+        }
+
+        .historia img{
+            width:100%;
+            height:450px;
+            object-fit:cover;
+            border-radius:10px;
+            border:1px solid rgba(212,175,55,.2);
+        }
+
+        .historia-texto p{
+            color:#cccccc;
+            line-height:1.9;
+            margin-bottom:20px;
+        }
+
+        /* ===== CARACTERÍSTICAS ===== */
+
+        .caracteristicas{
+            background:#080b0d;
+        }
+
+        .grid-4{
+            display:grid;
+            grid-template-columns:repeat(4, 1fr);
+            gap:25px;
+        }
+
+        .info-card{
+            background:#111719;
+            padding:30px;
+            border-radius:10px;
+            border:1px solid rgba(255,255,255,.06);
+            transition:.3s;
+        }
+
+        .info-card:hover{
+            transform:translateY(-8px);
+            border-color:rgba(212,175,55,.45);
+        }
+
+        .numero{
+            display:block;
+            color:#b00000;
+            font-size:14px;
+            font-weight:700;
+            margin-bottom:18px;
+        }
+
+        .info-card h3{
+            font-family:'Cinzel', serif;
+            font-size:20px;
+            margin-bottom:12px;
+            color:#ffffff;
+        }
+
+        .info-card p{
+            color:#aaaaaa;
+            font-size:14px;
+            line-height:1.8;
+        }
+
+        /* ===== LINHA DO TEMPO ===== */
+
+        .linha-tempo{
+            background:#0d1113;
+        }
+
+        .timeline{
+            border-left:2px solid #b00000;
+            padding-left:35px;
+        }
+
+        .tempo-item{
+            margin-bottom:35px;
+            position:relative;
+        }
+
+        .tempo-item::before{
+            content:"";
+            width:12px;
+            height:12px;
+            background:#d4af37;
+            border-radius:50%;
+            position:absolute;
+            left:-42px;
+            top:7px;
+        }
+
+        .tempo-item h3{
+            font-family:'Cinzel', serif;
+            color:#ffffff;
+            font-size:20px;
+            margin-bottom:8px;
+        }
+
+        .tempo-item p{
+            color:#aaaaaa;
+            line-height:1.8;
+            max-width:800px;
+        }
+
+        /* ===== FILMES ===== */
+
+        .filmes{
+            background:#080b0d;
+        }
+
+        .cards-filmes{
+            display:grid;
+            grid-template-columns:repeat(4, 1fr);
+            gap:25px;
+        }
+
+        .filme-card{
+            background:#111719;
+            border-radius:10px;
+            overflow:hidden;
+            border:1px solid rgba(255,255,255,.06);
+            transition:.3s;
+        }
+
+        .filme-card:hover{
+            transform:translateY(-8px);
+            border-color:rgba(212,175,55,.45);
+        }
+
+        .filme-card img{
+            width:100%;
+            height:350px;
+            object-fit:cover;
+            display:block;
+        }
+
+        .filme-info{
+            padding:20px;
+        }
+
+        .filme-info h3{
+            font-family:'Cinzel', serif;
+            font-size:19px;
+            margin-bottom:7px;
+            color:#ffffff;
+        }
+
+        .filme-info p{
+            color:#999999;
+            font-size:13px;
+        }
+
+        .nota{
+            display:block;
+            color:#d4af37;
+            font-weight:600;
+            margin-top:10px;
+        }
+
+        /* ===== MODERNOS ===== */
+
+        .modernos{
+            background:#0d1113;
+        }
+
+        /* ===== DIRETORES ===== */
+
+        .diretores{
+            background:#080b0d;
+        }
+
+        .diretor-card{
+            background:#111719;
+            border-radius:10px;
+            overflow:hidden;
+            border:1px solid rgba(255,255,255,.06);
+            transition:.3s;
+            text-align:center;
+        }
+
+        .diretor-card:hover{
+            transform:translateY(-8px);
+            border-color:rgba(212,175,55,.45);
+        }
+
+        .diretor-card img{
+            width:100%;
+            height:280px;
+            object-fit:cover;
+        }
+
+        .diretor-card h3{
+            font-family:'Cinzel', serif;
+            color:#ffffff;
+            font-size:19px;
+            margin:18px 15px 8px;
+        }
+
+        .diretor-card p{
+            color:#999999;
+            font-size:13px;
+            line-height:1.7;
+            padding:0 18px 20px;
+        }
+
+        /* ===== TRAILER ===== */
+
+        .trailer{
+            background:#0d1113;
+            text-align:center;
+        }
+
+        .trailer iframe{
+            width:80%;
+            height:450px;
+            border:none;
+            border-radius:10px;
+        }
+
+        /* ===== CURIOSIDADES ===== */
+
+        .curiosidades{
+            background:#080b0d;
+        }
+
+        /* ===== FAQ ===== */
+
+        .faq{
+            background:#0d1113;
+        }
+
+        .faq-item{
+            background:#111719;
+            border:1px solid rgba(255,255,255,.06);
+            border-radius:10px;
+            padding:25px 30px;
+            margin-bottom:15px;
+        }
+
+        .faq-item h3{
+            color:#d4af37;
+            font-family:'Cinzel', serif;
+            font-size:18px;
+            margin-bottom:10px;
+        }
+
+        .faq-item p{
+            color:#aaaaaa;
+            line-height:1.8;
+            font-size:14px;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer{
+            background:#050708;
+            border-top:1px solid rgba(212,175,55,.2);
+            padding:60px 10%;
+        }
+
+        .footer-grid{
+            display:grid;
+            grid-template-columns:2fr 1fr 1fr 1fr;
+            gap:40px;
+        }
+
+        footer h3{
+            font-family:'Cinzel', serif;
+            color:#d4af37;
+            margin-bottom:18px;
+        }
+
+        footer p,
+        footer a{
+            color:#888888;
+            font-size:13px;
+            text-decoration:none;
+            display:block;
+            margin-bottom:9px;
+        }
+
+        footer a:hover{
+            color:#d4af37;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+
+        @media(max-width:1100px){
+
+            .grid-4,
+            .cards-filmes{
+                grid-template-columns:repeat(2, 1fr);
+            }
+
+            .footer-grid{
+                grid-template-columns:repeat(2, 1fr);
+            }
+
+            nav ul{
+                gap:12px;
+            }
+        }
+
+        @media(max-width:800px){
+
+            header{
+                height:auto;
+                min-height:80px;
+                flex-direction:column;
+                justify-content:center;
+                gap:12px;
+                padding:15px 5%;
+            }
+
+            nav ul{
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+
+            .hero{
+                padding:150px 7% 80px;
+            }
+
+            .historia-grid{
+                grid-template-columns:1fr;
+            }
+
+            .trailer iframe{
+                width:100%;
+                height:300px;
+            }
+        }
+
+        @media(max-width:500px){
+
+            section{
+                padding:70px 6%;           
+            }
+
+            .grid-4,
+            .cards-filmes,
+            .footer-grid{
+                grid-template-columns:1fr;
+            }
+
+            .hero h1{
+                font-size:48px;
+            }
+
+            .titulo-secao{
+                font-size:30px;
+            }
+
+            .filme-card img{
+                height:400px;
+            }
+
+            .historia img{
+                height:300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        CINE<span>MAX</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="açao.html">Ação</a></li>
+            <li><a href="comedia.html">Comédia</a></li>
+            <li><a href="romance.html" class="ativo">Romance</a></li>
+            <li><a href="terror.html">Terror</a></li>
+            <li><a href="ficçao.html">Ficção</a></li>
+            <li><a href="suspense.html">Suspense</a></li>
+            <li><a href="drama.html">Drama</a></li>
+            <li><a href="crime.html">Crime</a></li>
+            <li><a href="aventura.html">Aventura</a></li>
+                <a href="lgbt.html" class="ativo">LGBTQIA+</a>
+        </ul>
+    </nav>
+
+</header>
+
+
+<!-- ===== HERO ===== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="categoria">
+            GÊNERO CINEMATOGRÁFICO
+        </div>
+
+        <h1>
+            FILMES DE<br>
+            ROMANCE
+        </h1>
+
+        <p>
+            Histórias de amor, encontros inesquecíveis e personagens
+            marcados por sentimentos intensos. Conheça a história e
+            os maiores filmes de um dos gêneros mais emocionantes do cinema.
+        </p>
+
+        <a href="#historia" class="botao">
+            EXPLORAR ROMANCE
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ===== HISTÓRIA ===== -->
+
+<section class="historia" id="historia">
+
+    <div class="historia-grid">
+
+        <div>
+            <img
+                src="https://images.elle.com.br/2022/08/B8Dh7ogn-origin-897-scaled.jpg"
+                alt="Cena representando filmes de romance">
+        </div>
+
+        <div class="historia-texto">
+
+            <h2 class="titulo-secao">
+                História do Romance
+            </h2>
+
+            <p>
+                O cinema de romance acompanha a história do cinema
+                praticamente desde seus primeiros anos, apresentando
+                histórias baseadas em encontros, sentimentos e
+                relacionamentos.
+            </p>
+
+            <p>
+                Com o passar das décadas, o gênero ganhou diferentes
+                estilos e passou a explorar histórias mais profundas,
+                combinando romance com drama, comédia, fantasia e outros
+                gêneros cinematográficos.
+            </p>
+
+            <p>
+                Grandes produções românticas também ajudaram a transformar
+                atores, personagens e histórias de amor em referências
+                marcantes da cultura cinematográfica.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== CARACTERÍSTICAS ===== -->
+
+<section class="caracteristicas">
+
+    <h2 class="titulo-secao">
+        Características do Gênero
+    </h2>
+
+    <p class="subtitulo">
+        Filmes de romance são construídos em torno de sentimentos,
+        relacionamentos e conflitos que aproximam ou afastam seus personagens.
+    </p>
+
+    <div class="grid-4">
+
+        <div class="info-card">
+
+            <span class="numero">01</span>
+
+            <h3>Relacionamentos</h3>
+
+            <p>
+                A relação entre os personagens é normalmente o principal
+                elemento responsável por conduzir a história.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="numero">02</span>
+
+            <h3>Emoção</h3>
+
+            <p>
+                Sentimentos, escolhas e momentos marcantes ajudam a criar
+                uma conexão emocional com o público.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="numero">03</span>
+
+            <h3>Conflitos</h3>
+
+            <p>
+                Obstáculos e diferenças entre os personagens tornam os
+                relacionamentos mais interessantes.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="numero">04</span>
+
+            <h3>Encontros</h3>
+
+            <p>
+                Encontros inesperados e acontecimentos que aproximam
+                personagens são frequentes no gênero.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== LINHA DO TEMPO ===== -->
+
+<section class="linha-tempo">
+
+    <h2 class="titulo-secao">
+        Linha do Tempo
+    </h2>
+
+    <div class="timeline">
+
+        <div class="tempo-item">
+
+            <h3>
+                1920–1950 — Os Primeiros Romances
+            </h3>
+
+            <p>
+                O romance começou a ganhar espaço nas primeiras grandes
+                produções cinematográficas, especialmente em histórias
+                dramáticas.
+            </p>
+
+        </div>
+
+
+        <div class="tempo-item">
+
+            <h3>
+                1960–1970 — Grandes Histórias
+            </h3>
+
+            <p>
+                Produções românticas passaram a explorar histórias mais
+                complexas e personagens com conflitos emocionais.
+            </p>
+
+        </div>
+
+
+        <div class="tempo-item">
+
+            <h3>
+                1980–1990 — Comédias Românticas
+            </h3>
+
+            <p>
+                O romance passou a se misturar fortemente com a comédia,
+                criando filmes leves e populares.
+            </p>
+
+        </div>
+
+
+        <div class="tempo-item">
+
+            <h3>
+                2000–Hoje — Novas Perspectivas
+            </h3>
+
+            <p>
+                O gênero passou a apresentar diferentes tipos de
+                relacionamentos e novas formas de contar histórias de amor.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== FILMES CLÁSSICOS ===== -->
+
+<section class="filmes">
+
+    <h2 class="titulo-secao">
+        Filmes Clássicos
+    </h2>
+
+    <p class="subtitulo">
+        Produções que ajudaram a definir e transformar o cinema de romance.
+    </p>
+
+    <div class="cards-filmes">
+
+        <div class="filme-card">
+
+            <img
+                src="https://thumb.wikimedia.org/wikipedia/pt/thumb/2/22/Titanic_poster.jpg/250px-Titanic_poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+                alt="Titanic">
+
+            <div class="filme-info">
+
+                <h3>Titanic</h3>
+
+                <p>1997 • Romance / Drama</p>
+
+                <span class="nota">
+                    ★ 7.9
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="filme-card">
+
+            <img
+                src="https://m.media-amazon.com/images/S/pv-target-images/e46417559054417d408881056c768e625399ef697188fe9a9a540e2dcb94e5ad.jpg"
+                alt="Diário de uma Paixão">
+
+            <div class="filme-info">
+
+                <h3>Diário de uma Paixão</h3>
+
+                <p>2004 • Romance / Drama</p>
+
+                <span class="nota">
+                    ★ 7.8
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="filme-card">
+
+            <img
+                src="https://m.media-amazon.com/images/S/pv-target-images/1214530ab10b65159f5c190c0c0a226ddc0d304622d793d55647fba147db6fbf.jpg"
+                alt="Orgulho e Preconceito">
+
+            <div class="filme-info">
+
+                <h3>Orgulho e Preconceito</h3>
+
+                <p>2005 • Romance / Drama</p>
+
+                <span class="nota">
+                    ★ 7.8
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="filme-card">
+
+            <img
+                src=https://thumb.wikimedia.org/wikipedia/pt/thumb/d/d2/Ghost_poster-51535.jpg/250px-Ghost_poster-51535.jpg?utm_source=pt.wikipedia.org&utm_campaign=parser&utm_content=thumbnail
+                alt="Ghost">
+
+            <div class="filme-info">
+
+                <h3>Ghost</h3>
+
+                <p>1990 • Romance / Fantasia</p>
+
+                <span class="nota">
+                    ★ 7.0
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== FILMES MODERNOS ===== -->
+
+<section class="modernos">
+
+    <h2 class="titulo-secao">
+        Filmes Modernos
+    </h2>
+
+    <p class="subtitulo">
+        Grandes produções que representam diferentes formas de contar
+        histórias românticas atualmente.
+    </p>
+
+    <div class="cards-filmes">
+
+        <div class="filme-card">
+
+            <img
+                src="https://play-lh.googleusercontent.com/9WLX4kpGokn73nXMUAElCj0byelBhVPSM5vbskzxZuMH8_guUJIbzSknr4wJ_8jRoZhVS9YRIWdunr9HMLLb"
+                alt="La La Land">
+
+            <div class="filme-info">
+
+                <h3>La La Land</h3>
+
+                <p>2016 • Romance / Musical</p>
+
+                <span class="nota">
+                    ★ 8.0
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="filme-card">
+
+            <img
+                src="https://br.web.img3.acsta.net/pictures/14/01/23/14/12/101764.jpg"
+                alt="A Culpa é das Estrelas">
+
+            <div class="filme-info">
+
+                <h3>A Culpa é das Estrelas</h3>
+
+                <p>2014 • Romance / Drama</p>
+
+                <span class="nota">
+                    ★ 7.7
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="filme-card">
+
+            <img
+                src="https://play-lh.googleusercontent.com/JQKfopRtWqyD1cUXjx4V00qLnKecgKlSTS6sL0YX1T0H4bzyOK8SxdQIUbZ6NTsKfkBm"
+                alt="Como Eu Era Antes de Você">
+
+            <div class="filme-info">
+
+                <h3>Como Eu Era Antes de Você</h3>
+
+                <p>2016 • Romance / Drama</p>
+
+                <span class="nota">
+                    ★ 7.4
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="filme-card">
+
+            <img
+                src="https://4.bp.blogspot.com/-gXz2PJr4ris/TteAdfGCv6I/AAAAAAAAAig/dSYBPSehaiM/s1600/Um+Dia.jpg"
+                alt="Um Dia">
+
+            <div class="filme-info">
+
+                <h3>Um Dia</h3>
+
+                <p>2011 • Romance / Drama</p>
+
+                <span class="nota">
+                    ★ 7.6
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== DIRETORES ===== -->
+
+<section class="diretores">
+
+    <h2 class="titulo-secao">
+        Diretores Importantes
+    </h2>
+
+    <p class="subtitulo">
+        Cineastas responsáveis por algumas das histórias românticas
+        mais marcantes do cinema.
+    </p>
+
+    <div class="grid-4">
+
+        <div class="diretor-card">
+
+            <img
+                src="https://m.media-amazon.com/images/M/MV5BNDgyNjBmY2ItZmRiZi00NTMyLWExMzYtNzE1YzNkZjgyMjcxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                alt="James Cameron">
+
+            <h3>James Cameron</h3>
+
+            <p>
+                Diretor de Titanic, uma das maiores produções românticas
+                da história do cinema.
+            </p>
+
+        </div>
+
+
+        <div class="diretor-card">
+
+            <img
+                src="https://image.tmdb.org/t/p/w500/14kRZ3XxNMyBv717YQSXr3wCucy.jpg"
+                alt="Damien Chazelle">
+
+            <h3>Damien Chazelle</h3>
+
+            <p>
+                Conhecido por combinar romance, música e grandes
+                elementos visuais.
+            </p>
+
+        </div>
+
+
+        <div class="diretor-card">
+
+            <img
+                src="https://ntvb.tmsimg.com/assets/assets/235741_v9_bc.jpg"
+                alt="Joe Wright">
+
+            <h3>Joe Wright</h3>
+
+            <p>
+                Diretor conhecido por adaptações de grandes histórias
+                literárias.
+            </p>
+
+        </div>
+
+
+        <div class="diretor-card">
+
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEOXi1mnfyVjEglweN6ZiHUCrKgqebr-LvDNfqyNSkQlUm_CCrTKitgkw&s=10"
+                alt="Richard Linklater">
+
+            <h3>Richard Linklater</h3>
+
+            <p>
+                Conhecido por histórias focadas em relacionamentos,
+                encontros e passagem do tempo.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== TRAILER ===== -->
+
+<section class="trailer">
+
+    <h2 class="titulo-secao">
+        Trailer em Destaque
+    </h2>
+
+    <p class="subtitulo">
+        Confira um dos grandes filmes modernos do gênero.
+    </p>
+
+    <iframe
+        src="https://www.youtube.com/embed/0pdqf4P9MB8"
+        title="Trailer de Romance"
+        allowfullscreen>
+    </iframe>
+
+</section>
+
+
+<!-- ===== CURIOSIDADES ===== -->
+
+<section class="curiosidades">
+
+    <h2 class="titulo-secao">
+        Curiosidades
+    </h2>
+
+    <p class="subtitulo">
+        Alguns fatos interessantes sobre o cinema de romance.
+    </p>
+
+    <div class="grid-4">
+
+        <div class="info-card">
+
+            <span class="numero">01</span>
+
+            <h3>Literatura</h3>
+
+            <p>
+                Muitas histórias românticas famosas do cinema foram
+                adaptadas de livros.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="numero">02</span>
+
+            <h3>Trilhas Sonoras</h3>
+
+            <p>
+                A música possui grande importância para criar emoção
+                em cenas românticas.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="numero">03</span>
+
+            <h3>Comédia</h3>
+
+            <p>
+                Romance e comédia formaram uma das combinações mais
+                populares do cinema.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="numero">04</span>
+
+            <h3>Clássicos</h3>
+
+            <p>
+                Diversos romances se tornaram referências permanentes
+                na história do cinema.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== FAQ ===== -->
+
+<section class="faq">
+
+    <h2 class="titulo-secao">
+        Perguntas Frequentes
+    </h2>
+
+    <div class="faq-item">
+
+        <h3>
+            O que caracteriza um filme de romance?
+        </h3>
+
+        <p>
+            O foco em relacionamentos, sentimentos e conflitos
+            emocionais entre os personagens.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h3>
+            Romance pode ser misturado com outros gêneros?
+        </h3>
+
+        <p>
+            Sim. O romance pode ser combinado com drama, comédia,
+            fantasia, ficção científica, aventura e diversos outros gêneros.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h3>
+            Qual é um dos romances mais conhecidos do cinema?
+        </h3>
+
+        <p>
+            Titanic é um dos exemplos mais conhecidos e populares
+            de romance cinematográfico.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <h3>
+                CineMax
+            </h3>
+
+            <p>
+                Um portal dedicado ao universo do cinema,
+                seus gêneros, filmes e grandes nomes.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Gêneros
+            </h3>
+
+            <a href="acao.html">Ação</a>
+            <a href="comedia.html">Comédia</a>
+            <a href="terror.html">Terror</a>
+            <a href="ficcao.html">Ficção</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Explorar
+            </h3>
+
+            <a href="../index.html">Início</a>
+            <a href="suspense.html">Suspense</a>
+            <a href="crime.html">Crime</a>
+            <a href="aventura.html">Aventura</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Contato
+            </h3>
+
+            <p>
+                cinemax@email.com
+            </p>
+
+            <p>
+                © 2026 CineMax
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
+```
